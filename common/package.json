@@ -1,0 +1,42 @@
+{
+  "name": "@sanity-image-tag/common",
+  "version": "0.1.0",
+  "description": "Common code for sanity image tags",
+  "type": "module",
+  "exports": {
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "check": "tsc --noEmit -p .",
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "@sanity/image-url": "^1.0.2",
+    "groq": "^3.16.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "sanity",
+    "image",
+    "responsive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otterdev-io/sanity-image-tag.git"
+  },
+  "homepage": "https://github.com/otterdev-io/sanity-image-tag#readme",
+  "author": "Otterdev",
+  "maintainers": [
+    {
+      "name": "Christopher Fraser",
+      "email": "chris@otterdev.io"
+    }
+  ],
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SanityImage from "@sanity-image-tag/astro";
+import { image } from "@sanity-image-tag/astro";
+import { sanityClient } from "sanity:client";
+
+const data = await sanityClient.fetch(
+  `*[_type == "site"][0] {
+      ${image("logo")}
+  }`
+);
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <SanityImage src={data.logo} />
+  </main>
+</Layout>

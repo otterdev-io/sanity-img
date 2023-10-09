@@ -1,0 +1,65 @@
+---
+// Renders a <img /> element with srcset generated from the `widths` attributes
+// When attribute is not provided, uses sensible defaults
+
+import { defaultSanityImageTagDefaults } from "@sanity-image-tag/common/defaults";
+import {
+  generateWidths,
+  isSanityDimensionedImage,
+} from "@sanity-image-tag/common/fns";
+import type { SanityImageProps } from "./types";
+import urlBuilder from "@sanity/image-url";
+
+type Props = SanityImageProps;
+
+//Max default allows for 1920px width @ 2x
+const defaults = (globalThis.sanityImageTagDefaults ??=
+  defaultSanityImageTagDefaults);
+
+//Try to leverage the sanityClient set by astro-sanity integration if it exists
+if (!defaults.imageUrlBuilder) {
+  try {
+    const { sanityClient } = await import("sanity:client");
+    defaults.imageUrlBuilder = urlBuilder(sanityClient);
+  } catch (e) {
+    //noop
+  }
+}
+
+const { imageUrlBuilder, src, widths, sizes, options, ...restProps } =
+  Astro.props;
+
+const builder = (imageUrlBuilder ?? defaults.imageUrlBuilder)
+  ?.image(src)
+  .withOptions(options ?? defaults.options);
+
+if (!builder) {
+  throw new Error("No image url builder specified, and no default set!");
+}
+
+const determinedWidths = Array.isArray(widths)
+  ? widths
+  : generateWidths(widths ?? defaults.autoWidths, src);
+
+const [width, height] = isSanityDimensionedImage(src)
+  ? [src.asset.metadata.dimensions.width, src.asset.metadata.dimensions.height]
+  : [undefined, undefined];
+
+const srcset = determinedWidths
+  .map(
+    (w: number) =>
+      `${builder
+        .width(w)
+        .withOptions(options ?? {})
+        .url()} ${w}w`,
+  )
+  .join(", ");
+---
+
+<img
+  src={builder.url()}
+  srcset={srcset}
+  width={width}
+  height={height}
+  {...restProps}
+/>

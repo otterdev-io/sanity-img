@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "lib": ["ES2023"],
+    "target": "ESNext",
+    "module": "ESNext", // Enable node-style module resolution, for things like npm package imports.
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "declaration": true
+  }
+}

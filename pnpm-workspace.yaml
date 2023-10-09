@@ -1,0 +1,4 @@
+packages:
+  - "astro"
+  - "common"
+  - "examples/**"

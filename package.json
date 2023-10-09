@@ -1,0 +1,19 @@
+{
+  "name": "@sanity-image-tag/workspace",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otterdev-io/sanity-image-tag.git"
+  },
+  "homepage": "https://github.com/otterdev-io/sanity-image-tag#readme",
+  "author": "Otterdev",
+  "maintainers": [
+    {
+      "name": "Christopher Fraser",
+      "email": "chris@otterdev.io"
+    }
+  ],
+  "license": "ISC"
+}
