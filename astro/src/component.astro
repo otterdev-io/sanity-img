@@ -2,29 +2,19 @@
 // Renders a <img /> element with srcset generated from the `widths` attributes
 // When attribute is not provided, uses sensible defaults
 
-import { defaultSanityImageTagDefaults } from "@sanity-image-tag/common/defaults";
+import { defaultSanityImageComponentDefaults } from "@sanity-image-component/common/defaults";
 import {
   generateWidths,
   isSanityDimensionedImage,
-} from "@sanity-image-tag/common/fns";
-import type { SanityImageProps } from "./types";
-import urlBuilder from "@sanity/image-url";
+} from "@sanity-image-component/common/fns";
+import type { SanityImageProps } from "@sanity-image-component/common/types";
+import type { ImgAttributes } from "astro:assets";
 
-type Props = SanityImageProps;
+type Props = SanityImageProps & ImgAttributes;
 
 //Max default allows for 1920px width @ 2x
-const defaults = (globalThis.sanityImageTagDefaults ??=
-  defaultSanityImageTagDefaults);
-
-//Try to leverage the sanityClient set by astro-sanity integration if it exists
-if (!defaults.imageUrlBuilder) {
-  try {
-    const { sanityClient } = await import("sanity:client");
-    defaults.imageUrlBuilder = urlBuilder(sanityClient);
-  } catch (e) {
-    //noop
-  }
-}
+const defaults = (globalThis.sanityImageComponentDefaults ??=
+  defaultSanityImageComponentDefaults);
 
 const { imageUrlBuilder, src, widths, sizes, options, ...restProps } =
   Astro.props;

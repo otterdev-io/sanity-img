@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-tag/astro",
+  "name": "@sanity-image-component/astro",
   "version": "0.1.0",
   "description": "An Astro component for rendering a responsive <img> element for an image fetched from Sanity",
   "type": "module",
@@ -7,13 +7,14 @@
   "module": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./types": "./src/types.ts"
+    "./integration": "./src/integration.ts",
+    "./component": "./src/component.astro"
   },
   "scripts": {
     "check": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@sanity-image-tag/common": "^0.1.0",
+    "@sanity-image-component/common": "^0.1.0",
     "@sanity/image-url": "^1.0.2"
   },
   "devDependencies": {
@@ -43,9 +44,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-tag.git"
+    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-tag#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-image-component#readme",
   "author": "Otterdev",
   "maintainers": [
     {

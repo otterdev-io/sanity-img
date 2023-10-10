@@ -2,13 +2,14 @@ import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
 import type {
   ImageUrlBuilderOptionsWithAliases,
   SanityImageDimensions,
+  SanityImageSource,
   SanityImageWithAssetStub,
-} from "@sanity/image-url/lib/types/types.js";
+} from "@sanity/image-url/lib/types/types";
 
 /**
  * Default properties for all components in the app
  */
-export interface SanityImageTagDefaults {
+export interface SanityImageComponentDefaults {
   autoWidths: AutoWidths;
   imageUrlBuilder?: ImageUrlBuilder;
   options: Partial<ImageUrlBuilderOptionsWithAliases>;
@@ -34,5 +35,31 @@ export type SanityDimensionedImage = SanityImageWithAssetStub & {
 };
 
 declare global {
-  var sanityImageTagDefaults: SanityImageTagDefaults;
+  var sanityImageComponentDefaults: SanityImageComponentDefaults;
 }
+
+/**
+ * Base type for our component's props
+ */
+export type SanityImageProps = {
+  /**
+   * An instance of sanity image url builder to use. If default is set, may be omitted
+   */
+  imageUrlBuilder?: ImageUrlBuilder;
+  /**
+   * The image to display, as a property from a `groq` query
+   */
+  src: SanityImageSource;
+  /**
+   * Specifies how to calculate widths for `<source />` elements. You may either specify a list of widths to use, or a an `AutoWidths` type which declares how to automatically determine the widths.
+   */
+  widths?: number[] | AutoWidths;
+  /**
+   * Additional image builder options
+   */
+  options?: Partial<ImageUrlBuilderOptionsWithAliases>;
+  /**
+   * Whether to add .auto('format') to image builder, automatically converting to webp when available
+   */
+  autoFormat?: boolean;
+};

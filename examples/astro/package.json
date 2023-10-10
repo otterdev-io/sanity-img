@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-tag/example-astro",
+  "name": "@sanity-image-component/example-astro",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,10 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@sanity-image-tag/astro": "*",
+    "@astrojs/svelte": "^4.0.3",
+    "@sanity-image-component/astro": "workspace:*",
+    "@sanity-image-component/svelte": "workspace:*",
     "@sanity/astro": "^2.1.1",
     "@sanity/client": "^6.4.12",
+    "@sanity/image-url": "^1.0.2",
     "astro": "^3.0.3",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "svelte": "^4.2.1"
   }
 }

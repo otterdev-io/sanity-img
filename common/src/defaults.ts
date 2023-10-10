@@ -1,24 +1,26 @@
-import type { SanityImageTagDefaults } from "./types";
+import type { SanityImageComponentDefaults } from "./types";
 /**
  * The default values for sanityImageDefaults
  * The width has been picked to full-width images for up to 1920px @2x screens
  */
-export const defaultSanityImageTagDefaults: SanityImageTagDefaults = {
-  autoWidths: {
-    maxWidth: 3840,
-    step: 320,
-  },
-  options: { auto: "format" },
-};
+export const defaultSanityImageComponentDefaults: SanityImageComponentDefaults =
+  {
+    autoWidths: {
+      maxWidth: 3840,
+      step: 320,
+    },
+    options: { auto: "format" },
+  };
 
-export function setSanityImageTagDefaults(
-  defaults: Partial<SanityImageTagDefaults>,
+export function setSanityImageComponentDefaults(
+  defaults: Partial<SanityImageComponentDefaults>,
 ) {
-  if (!globalThis.sanityImageTagDefaults) {
-    globalThis.sanityImageTagDefaults = defaultSanityImageTagDefaults;
+  if (!globalThis.sanityImageComponentDefaults) {
+    globalThis.sanityImageComponentDefaults =
+      defaultSanityImageComponentDefaults;
   }
   Object.entries(defaults).forEach(([k, v]) => {
     //@ts-expect-error keys don't match up
-    globalThis.sanityImageTagDefaults[k] = v;
+    globalThis.sanityImageComponentDefaults[k] = v;
   });
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@sanity-image-component/common",
+  "name": "@sanity-image-component/svelte",
   "version": "0.1.0",
-  "description": "Common code for sanity image tags",
+  "description": "Svelte tag for rendering an image from Sanity",
   "type": "module",
   "exports": {
     "./*": "./dist/*.js"
@@ -11,15 +11,23 @@
     "build": "tsc -p ."
   },
   "dependencies": {
-    "@sanity/image-url": "^1.0.2",
-    "groq": "^3.16.4"
+    "@sanity-image-component/common": "^0.1.0",
+    "@sanity/image-url": "^1.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.49.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "prettier-plugin-svelte": "^3.0.3",
+    "svelte": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11"
+  },
+  "peerDependencies": {
+    "@sanity/client": "> 6.0.0",
+    "@sanity/image-url": "> 1.0.0",
+    "vite": "^4.4.11"
   },
   "keywords": [
     "sanity",

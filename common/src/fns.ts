@@ -2,6 +2,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import type {
   AutoWidths,
   SanityDimensionedImage,
+  SanityImageProps,
 } from "./types";
 
 /**
@@ -45,7 +46,7 @@ export function mergeSingleRecursive<T extends Record<string, any>>(
  * @param image
  */
 export function isSanityDimensionedImage(
-  image: SanityImageSource
+  image: SanityImageSource,
 ): image is SanityDimensionedImage {
   return (
     typeof image == "object" &&
@@ -65,13 +66,45 @@ export function isSanityDimensionedImage(
  */
 export function generateWidths(
   autoWidths: AutoWidths,
-  image: SanityImageSource
+  image: SanityImageSource,
 ): number[] {
   const maxWidth = isSanityDimensionedImage(image)
     ? image.asset.metadata.dimensions.width
     : autoWidths.maxWidth;
   const divisions = Math.ceil(maxWidth / autoWidths.step);
   return Array.from({ length: divisions }, (_, i) =>
-    Math.min(Math.floor(autoWidths.step * (i + 1)), maxWidth)
+    Math.min(Math.floor(autoWidths.step * (i + 1)), maxWidth),
   );
+}
+
+export function componentProps({
+  imageUrlBuilder,
+  widths,
+  src,
+  options,
+}: Required<
+  Pick<SanityImageProps, "widths" | "src" | "options" | "imageUrlBuilder">
+>): { width: number | undefined; height: number | undefined; srcset: string } {
+  const determinedWidths = Array.isArray(widths)
+    ? widths
+    : generateWidths(widths, src);
+
+  const [width, height] = isSanityDimensionedImage(src)
+    ? [
+        src.asset.metadata.dimensions.width,
+        src.asset.metadata.dimensions.height,
+      ]
+    : [undefined, undefined];
+
+  const srcset = determinedWidths
+    .map(
+      (w: number) =>
+        `${imageUrlBuilder
+          .width(w)
+          .withOptions(options ?? {})
+          .url()} ${w}w`,
+    )
+    .join(", ");
+
+  return { width, height, srcset };
 }

@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SanityImage from "@sanity-image-tag/astro";
-import { image } from "@sanity-image-tag/astro";
+import SanityImage from "@sanity-image-component/astro";
+import SanityImageSvelte from "@sanity-image-component/svelte";
+import { image } from "@sanity-image-component/astro";
 import { sanityClient } from "sanity:client";
 
 const data = await sanityClient.fetch(
@@ -11,8 +12,9 @@ const data = await sanityClient.fetch(
 );
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Astro example">
   <main>
     <SanityImage src={data.logo} />
+    <SanityImageSvelte src={data.logo} />
   </main>
 </Layout>

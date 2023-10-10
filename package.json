@@ -1,13 +1,13 @@
 {
-  "name": "@sanity-image-tag/workspace",
+  "name": "@sanity-image-component/workspace",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-tag.git"
+    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-tag#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-image-component#readme",
   "author": "Otterdev",
   "maintainers": [
     {
