@@ -20,7 +20,7 @@ import groq from "groq";
  * @param opts.as what the attribute should be named in our output object
  * @returns enhanced groq fragment
  */
-export const image = (attr: string, opts?: { as: string }) => groq`'${
+export const image = (attr: string, opts?: { as: string }) => groq.default`'${
   opts?.as ?? attr
 }': ${attr} {
   ...,

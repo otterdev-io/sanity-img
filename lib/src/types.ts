@@ -1,10 +1,10 @@
-import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder";
+import type { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder.js";
 import type {
   ImageUrlBuilderOptionsWithAliases,
   SanityImageDimensions,
   SanityImageSource,
   SanityImageWithAssetStub,
-} from "@sanity/image-url/lib/types/types";
+} from "@sanity/image-url/lib/types/types.js";
 
 /**
  * Default properties for all components in the app

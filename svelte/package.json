@@ -1,18 +1,38 @@
 {
   "name": "@sanity-image-component/svelte",
-  "version": "0.1.0",
-  "description": "Svelte tag for rendering an image from Sanity",
-  "type": "module",
-  "exports": {
-    "./*": "./dist/*.js"
-  },
+  "version": "0.0.1",
   "scripts": {
-    "check": "tsc --noEmit -p .",
-    "build": "tsc -p ."
+    "dev": "vite dev",
+    "build": "vite build && npm run package",
+    "preview": "vite preview",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./component.svelte": {
+      "types": "./dist/component.svelte.d.ts",
+      "svelte": "./dist/component.svelte",
+      "default": "./dist/component.svelte"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
   "dependencies": {
-    "@sanity-image-component/common": "^0.1.0",
+    "@sanity-image-component/lib": "workspace:*",
     "@sanity/image-url": "^1.0.2"
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^6.7.0",
@@ -20,31 +40,17 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "prettier": "^3.0.3",
     "prettier-plugin-svelte": "^3.0.3",
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.20.4",
+    "@sveltejs/package": "^2.0.0",
+    "publint": "^0.1.9",
     "svelte": "^4.2.1",
+    "svelte-check": "^3.4.3",
+    "tslib": "^2.4.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.11"
   },
-  "peerDependencies": {
-    "@sanity/client": "> 6.0.0",
-    "@sanity/image-url": "> 1.0.0",
-    "vite": "^4.4.11"
-  },
-  "keywords": [
-    "sanity",
-    "image",
-    "responsive"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
-  },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component#readme",
-  "author": "Otterdev",
-  "maintainers": [
-    {
-      "name": "Christopher Fraser",
-      "email": "chris@otterdev.io"
-    }
-  ],
-  "license": "ISC"
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module"
 }

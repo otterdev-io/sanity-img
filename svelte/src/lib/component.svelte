@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { defaultSanityImageComponentDefaults } from "@sanity-image-component/common/defaults";
-  import { componentProps } from "@sanity-image-component/common/fns";
-  import type { SanityImageProps } from "@sanity-image-component/common/types";
+  import {
+    defaultSanityImageComponentDefaults,
+    componentProps,
+    type SanityImageProps,
+  } from "@sanity-image-component/lib";
 
   import type { HTMLImgAttributes } from "svelte/elements";
 

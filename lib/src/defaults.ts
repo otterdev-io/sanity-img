@@ -1,4 +1,4 @@
-import type { SanityImageComponentDefaults } from "./types";
+import type { SanityImageComponentDefaults } from "./types.js";
 /**
  * The default values for sanityImageDefaults
  * The width has been picked to full-width images for up to 1920px @2x screens

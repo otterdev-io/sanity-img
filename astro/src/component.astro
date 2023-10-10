@@ -2,12 +2,12 @@
 // Renders a <img /> element with srcset generated from the `widths` attributes
 // When attribute is not provided, uses sensible defaults
 
-import { defaultSanityImageComponentDefaults } from "@sanity-image-component/common/defaults";
 import {
+  type SanityImageProps,
+  defaultSanityImageComponentDefaults,
   generateWidths,
   isSanityDimensionedImage,
-} from "@sanity-image-component/common/fns";
-import type { SanityImageProps } from "@sanity-image-component/common/types";
+} from "@sanity-image-component/lib";
 import type { ImgAttributes } from "astro:assets";
 
 type Props = SanityImageProps & ImgAttributes;
@@ -53,3 +53,4 @@ const srcset = determinedWidths
   height={height}
   {...restProps}
 />
+ ../../lib/dist/defaults../../lib/dist/fns../../lib/dist/types

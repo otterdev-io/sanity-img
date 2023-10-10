@@ -14,7 +14,7 @@
     "check": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@sanity-image-component/common": "^0.1.0",
+    "@sanity-image-component/lib": "workspace:*",
     "@sanity/image-url": "^1.0.2"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import type { AstroIntegration } from "astro";
-import { defaultSanityImageComponentDefaults } from "@sanity-image-component/common/defaults";
+import { defaultSanityImageComponentDefaults } from "../../lib/dist/defaults";
 import { vitePluginSanityImageComponentBuilder } from "./vite-plugin";
-import type { SanityImageComponentDefaults } from "@sanity-image-component/common/types";
+import type { SanityImageComponentDefaults } from "../../lib/dist/types";
 
 export function sanityImageComponent(
   defaults?: SanityImageComponentDefaults,

@@ -1,9 +1,9 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types.js";
 import type {
   AutoWidths,
   SanityDimensionedImage,
   SanityImageProps,
-} from "./types";
+} from "./types.js";
 
 /**
  * Perform a shallow (non-recursive) merge of multiple objects

@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/svelte": "^4.0.3",
     "@sanity-image-component/astro": "workspace:*",
+    "@sanity-image-component/lib": "workspace:*",
     "@sanity-image-component/svelte": "workspace:*",
     "@sanity/astro": "^2.1.1",
     "@sanity/client": "^6.4.12",
