@@ -9,7 +9,7 @@ export const defaultSanityImageComponentDefaults: SanityImageComponentDefaults =
       maxWidth: 3840,
       step: 320,
     },
-    options: { auto: "format" },
+    options: {},
   };
 
 export function setSanityImageComponentDefaults(

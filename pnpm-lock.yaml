@@ -11,7 +11,7 @@ importers:
   astro:
     dependencies:
       '@sanity-image-component/lib':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../lib
       '@sanity/astro':
         specifier: '> 2.0.0'
@@ -59,9 +59,6 @@ importers:
       '@sanity-image-component/astro':
         specifier: workspace:*
         version: link:../../astro
-      '@sanity-image-component/lib':
-        specifier: workspace:*
-        version: link:../../lib
       '@sanity-image-component/svelte':
         specifier: workspace:*
         version: link:../../svelte
@@ -112,7 +109,7 @@ importers:
   svelte:
     dependencies:
       '@sanity-image-component/lib':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../lib
       '@sanity/image-url':
         specifier: ^1.0.2

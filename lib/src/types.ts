@@ -58,8 +58,4 @@ export type SanityImageProps = {
    * Additional image builder options
    */
   options?: Partial<ImageUrlBuilderOptionsWithAliases>;
-  /**
-   * Whether to add .auto('format') to image builder, automatically converting to webp when available
-   */
-  autoFormat?: boolean;
 };

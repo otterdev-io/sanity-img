@@ -1,58 +1,86 @@
-# create-svelte
+# @sanity-image-component/svelte
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A svelte framework components for rendering responsive `<img>` elements for images fetched from [Sanity](https://www.sanity.io). It will generate the elements with a srcset optimised for a range of resolutions and formats, using sanity's image API to serve the optimised images. Then you provide the `sizes` attribute, to ensure the browser delivers the ideal source. Refer to [Responsive images - MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) for information on providing responsive images.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+Then usage can be as simple as:
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```svelte
+<script>
+  import SanityImg from "@sanity-image-component/svelte"
+</script>
+---
+   <SanityImg
+    src={myImage}
+    sizes="(min-width:768px) 50vw, 100vw"
+  /> 
 ```
 
-## Developing
+# Setup 
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Settings defaults
+You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@sanity-image-component` packages: 
 
-```bash
-npm run dev
+```ts
+---
+import { setSanityImageComponentDefaults } from "@sanity-image-component/svelte";
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
+---
+``` 
+## In astro
+If using the svelte component in astro, you likely will want to set up the integration in `@sanity-image-component/astro`. This will set a default image builder and other options, making using the component easier. Refer to the README in that package for instructions.
+
+
+# Usage
+The key properties to provide for responsive images are:
+  - `src`: Image from sanity data
+  - `sizes`: Sizes string to allow browser to select ideal image from automatically generated srcset
+  
+```svelte
+<script>
+import SanityImg from "@sanity-image-component/svelte"
+</script>
+
+   <SanityImg
+    src={myImage}
+    sizes="(min-width:768px) 50vw, 100vw"
+  /> 
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+Additional properties are:
+ - `imageUrlBuilder`: A Sanity Image url builder to use for this element. Only necessary if default is not set. Refer to `setting defaults` for how to set default.
+ - `widths`: An array of widths to generate for srcset, or an autowidths struct `{ maxWidth: number; step: number; }` to inform the component how to generate sources up to the image's original size
+ - `options`: Additional options to pass to image builder
 
-## Building
+Additionally, the component extends the `img` element, and can accept any other props that `img` does, eg `alt`:
 
-To build your library:
-
-```bash
-npm run package
+```astro
+   <SanityImg
+    src={myImage}
+    sizes="(min-width:768px) 50vw, 100vw"
+    alt="My Image"
+  /> 
 ```
 
-To create a production version of your showcase app:
+# Fetching the image with groq
+The component will work with images fetched with a simple `groq`  query without fetching any image metadata, eg
 
-```bash
-npm run build
+```ts
+const query = groq`*[_id == 'homePage'][0] {
+     ...etc,
+     myBackgroundImage,
+     ...etc,
+  }`
 ```
 
-You can preview the production build with `npm run preview`.
+However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```ts
+import { image } from '@sanity-image-component/svelte'
 
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+const query = groq`*[_id == 'homePage'][0] {
+  ...etc,
+  ${image('myBackgroundImage')},
+  ...etc
+}`
 ```

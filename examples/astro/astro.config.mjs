@@ -13,6 +13,6 @@ export default defineConfig({
       dataset: "production",
       useCdn: true,
     }),
-    sanityImageComponent(),
+    sanityImageComponent({}),
   ],
 });

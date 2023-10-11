@@ -10,16 +10,18 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./component.svelte": {
-      "types": "./dist/component.svelte.d.ts",
-      "svelte": "./dist/component.svelte",
-      "default": "./dist/component.svelte"
+    "./SanityImg.svelte": {
+      "types": "./dist/SanityImg.svelte.d.ts",
+      "svelte": "./dist/SanityImg.svelte",
+      "default": "./dist/SanityImg.svelte"
     }
   },
   "files": [
@@ -28,10 +30,11 @@
     "!dist/**/*.spec.*"
   ],
   "dependencies": {
-    "@sanity-image-component/lib": "workspace:*",
+    "@sanity-image-component/lib": "^0.1.0",
     "@sanity/image-url": "^1.0.2"
   },
   "peerDependencies": {
+    "@sanity-image-component/lib": "^0.1.0",
     "svelte": "^4.0.0"
   },
   "devDependencies": {

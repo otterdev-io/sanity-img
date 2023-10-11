@@ -1,54 +1,84 @@
-# astro-sanity-picture
-An astro component for rendering a responsive `<picture>` element for an image fetched from [Sanity](https://www.sanity.io). It will generate the element with a set of image sources for optimised resolutions and formats, using sanity's image API to serve the optimised images.
+# @sanity-image-component/astro
 
-# Usage
----
-Minimal example:
+Successor to astro-sanity-picture.
+
+An astro framework component for rendering responsive `<img>` elements for images fetched from [Sanity](https://www.sanity.io). It will generate the elements with a srcset optimised for a range of resolutions and formats, using sanity's image API to serve the optimised images. Then you provide the `sizes` attribute, to ensure the browser delivers the ideal source. Refer to [Responsive images - MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) for information on providing responsive images.
+
+Then usage can be as simple as:
 
 ```astro
 ---
-import SanityPicture from "astro-sanity-picture";
-
+import SanityImg from "@sanity-image-component/astro"
 ---
-   <SanityPicture
-    image={mainBgImage}
-    imageUrlBuilder={myImageBuilder}
+   <SanityImg
+    src={myImage}
     sizes="(min-width:768px) 50vw, 100vw"
   /> 
 ```
 
-Defaults can be set for all picture components
+# Setup
+Using the astro integration is optional. If used though, it will link it to the @sanity/astro addon so that you no longer need to specify an imageUrlBuilder, and also allow you to override default options.
 
+First import it:
+```ts
+import { sanityImageComponent } from "@sanity-image-component/astro/integration";
+```
+
+and add it to `astro.config.mjs` after the sanity integration:
+
+```ts
+import { defineConfig } from "astro/config";
+import sanityIntegration from "@sanity/astro";
+import svelte from "@astrojs/svelte";
+import { sanityImageComponent } from "@sanity-image-component/astro/integration";
+// https://astro.build/config
+
+export default defineConfig({
+  integrations: [
+    svelte(),
+    sanityIntegration({
+      //Otterdev site project
+      projectId: "vfvqs8md",
+      dataset: "production",
+      useCdn: true,
+    }),
+    sanityImageComponent({auto: 'format'}),
+  ],
+});
+``` 
+
+# Usage
+The key properties to provide for responsive images are:
+  - `src`: Image from sanity data
+  - `sizes`: Sizes string to allow browser to select ideal image from automatically generated srcset
+  
 ```astro
 ---
-import SanityPicture, {  setSanityPictureDefaults} from "astro-sanity-picture";
-
-setSanityPictureDefaults({ imageUrlBuilder: myImageUrlBuilder })
+import SanityImg from "@sanity-image-component/astro"
 ---
-   <SanityPicture
-    image={mainBgImage}
+   <SanityImg
+    src={myImage}
     sizes="(min-width:768px) 50vw, 100vw"
-     /> 
+  /> 
 ```
 
-Attributes of the `<img />` element displayed inside the picture can be set using the `img` property.
+Additional properties are:
+ - `imageUrlBuilder`: A Sanity Image url builder to use for this element. Only necessary if sanity integration is not used, and default is not set otherwise. Refer to `setting defaults` for how to set default.
+ - `widths`: An array of widths to generate for srcset, or an autowidths struct `{ maxWidth: number; step: number; }` to inform the component how to generate sources up to the image's original size
+ - `options`: Additional options to pass to image builder
+
+Additionally, the component extends the `img` element, and can accept any other props that `img` does, eg `alt`:
 
 ```astro
----
-import SanityPicture, {  setSanityPictureDefaults} from "astro-sanity-picture";
-
-setSanityPictureDefaults({ imageUrlBuilder: myImageUrlBuilder })
----
-   <SanityPicture
-    image={mainBgImage} 
-    img={{style: {objectFit: 'cover'}}}
-    /> 
+   <SanityImg
+    src={myImage}
+    sizes="(min-width:768px) 50vw, 100vw"
+    alt="My Image"
+  /> 
 ```
 
-In this example, we are stating that image is to be displayed at half the page width when the page is >= 768px, and at the whole page width otherwise. The browser will then select the source that is appropriate for the image sizing, whether it is 50vw or 100vw.
-
-## Fetching the image from groq
-The component will work with images fetched from a simple `groq`  query without fetching any image metadata, eg
+# Fetching the image with groq
+The component will work with images fetched with a simple `groq`  query without fetching any image metadata, eg
 
 ```ts
 const query = groq`*[_id == 'homePage'][0] {
@@ -58,45 +88,25 @@ const query = groq`*[_id == 'homePage'][0] {
   }`
 ```
 
-However it is able to optimize the generated source sets to be smaller than the original image, and use a low quality placeholder, when the image is fetched with metadata.
-To help with this, you can use the `picture` function provided:
+However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function.
 
 ```ts
-import { picture } from 'astro-sanity-picture/query'
+import { image } from '@sanity-image-component/astro'
 
 const query = groq`*[_id == 'homePage'][0] {
   ...etc,
-  ${picture('myBackgroundImage')},
+  ${image('myBackgroundImage')},
   ...etc
 }`
 ```
 
-# Component options
+# Setting defaults for all components
+As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@sanity-image-component` packages: 
 
-- `imageUrlBuilder?: ImageUrlBuilder` - An instance of sanity image url builder to use. If default is set, may be omitted
-- `src: SanityImageSource` - The image to display, as a property from a `groq` query
-- `sizes: string` - Sizes attribute to apply to each source element, unless overriden. You will want to specify this, eg `50vw`, to ensure the correct resolution of source image is chosen
-- `sources?: PictureSource[]` - Each `PictureSource` object in the list informs the generation of a `<source />` element for each of the widths generated by the `widths` property. `PictureSource` properties are:
-  - `options?: Partial<ImageUrlBuilderOptionsWithAliases>` - Options for the sanity image url builder to apply to this source
-  withWebp?: boolean - whether to include a mirrored source in webp format. Default setting is true
-  - `...attributes?: Omit<SourceAttributes, "srcset">` - All other attributes that apply to the `<source>` element. Often you will want to set `media` and `sizes`, as in standard usage of the `<picture>` tag.
-    - `media?: string` - CSS @media rule that determines when this source applies
-    - `sizes?: string;` - comma seperated list of rule - width pairings. Overrides the tag-level sizes attribute
-- `widths?: number[] | AutoWidths` - Specifies how to calculate widths for `<source />` elements. You may either specify a list of widths to use, or a an `AutoWidths` type which declares how to automatically determine the widths. 
-- `img?: Omit<ImgAttributes, "src">` - Attributes to apply to the base `<img />` element in the picture
-- `lqip?: Lqip` - Options for inserting a low quality image placeholder (lqip) as the background image of the element;
-  - `enabled: boolean` - Whether to use lqip
-  - `transitionDuration: number` - Duration in which to fade in final image once loaded
-- `...attributes - PictureAttributes` - Additional attributes to apply to the `<picture />` element;
-
-# Defaults 
-- `autowidths`:
 ```ts
-{
-  maxWidth: 3840,
-  step: 320,
-}
+---
+import { setSanityImageComponentDefaults } from "@sanity-image-component/astro";
+
+setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
+---
 ```
-- `withWebp`: `true`
-- `img`: `loading: "lazy"`
-- `lqip`: `{ enabled: true, transitionDuration: 350 }`

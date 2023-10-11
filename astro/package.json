@@ -7,14 +7,18 @@
   "module": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./integration": "./src/integration.ts",
-    "./component": "./src/component.astro"
+    "./integration": {
+      "default": "./src/integration.ts"
+    },
+    "./SanityImg.astro": {
+      "default": "./src/SanityImg.astro"
+    }
   },
   "scripts": {
     "check": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@sanity-image-component/lib": "workspace:*",
+    "@sanity-image-component/lib": "^0.1.0",
     "@sanity/image-url": "^1.0.2"
   },
   "devDependencies": {
@@ -32,6 +36,7 @@
     "@sanity/astro": "> 2.0.0",
     "@sanity/client": "> 6.0.0",
     "@sanity/image-url": "> 1.0.0",
+    "@sanity-image-component/lib": "^0.1.0",
     "astro": "> 2.0.0"
   },
   "keywords": [
