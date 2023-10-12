@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import sanityIntegration from "@sanity/astro";
 import svelte from "@astrojs/svelte";
-import { sanityImageComponent } from "@sanity-image-component/astro/integration";
+import { sanityImageComponentIntegration } from "@sanity-image-component/astro/integration";
 // https://astro.build/config
 
 export default defineConfig({
@@ -13,6 +13,6 @@ export default defineConfig({
       dataset: "production",
       useCdn: true,
     }),
-    sanityImageComponent({}),
+    sanityImageComponentIntegration({ options: { auto: "format" } }),
   ],
 });

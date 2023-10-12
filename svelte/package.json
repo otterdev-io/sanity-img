@@ -15,13 +15,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js",
+      "module": "./dist/index.js",
       "default": "./dist/index.js"
-    },
-    "./SanityImg.svelte": {
-      "types": "./dist/SanityImg.svelte.d.ts",
-      "svelte": "./dist/SanityImg.svelte",
-      "default": "./dist/SanityImg.svelte"
     }
   },
   "files": [

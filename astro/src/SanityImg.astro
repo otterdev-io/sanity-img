@@ -8,8 +8,8 @@ import {
   generateWidths,
   isSanityDimensionedImage,
 } from "@sanity-image-component/lib";
-import type { ImgAttributes } from "astro:assets";
 
+import type { ImgAttributes } from "./types";
 type Props = SanityImageProps & ImgAttributes;
 
 //Max default allows for 1920px width @ 2x
