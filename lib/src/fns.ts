@@ -57,6 +57,43 @@ export function isSanityDimensionedImage(
 }
 
 /**
+ * Calculate optimal width and height values for an image, where either or both may have already been specified
+ * If image metadata was fetched, will scale missing values to keep aspect ratio
+ * @param src image src from sanity
+ * @param width optionally manually specified width
+ * @param height optionally manually specified height
+ * @returns width and height tuple
+ */
+function getImageDimensions(
+  src: SanityImageSource,
+  width: number | undefined,
+  height: number | undefined,
+): [width: number | undefined, height: number | undefined] {
+  return [
+    width ?? inferredWidth(src, height),
+    height ?? inferredHeight(src, width),
+  ];
+}
+
+function inferredWidth(src: SanityImageSource, height: number | undefined) {
+  if (isSanityDimensionedImage(src)) {
+    return height != null
+      ? height * src.asset.metadata.dimensions.aspectRatio
+      : src.asset.metadata.dimensions.width;
+  }
+  return undefined;
+}
+
+function inferredHeight(src: SanityImageSource, width: number | undefined) {
+  if (isSanityDimensionedImage(src)) {
+    return width != null
+      ? width / src.asset.metadata.dimensions.aspectRatio
+      : src.asset.metadata.dimensions.height;
+  }
+  return undefined;
+}
+
+/**
  * Calculate automatically determined widths for an image
  * If image dimensions are not available, maximum width is bounded by autoWidths.maxWidth
  * Incrementing by autoWidths.step px
@@ -77,34 +114,41 @@ export function generateWidths(
   );
 }
 
+export interface ComponentProps {
+  width: number | undefined;
+  height: number | undefined;
+  srcset: string;
+  src: string;
+}
+
 export function componentProps({
   imageUrlBuilder,
   widths,
+  width,
+  height,
   src,
   options,
 }: Required<
   Pick<SanityImageProps, "widths" | "src" | "options" | "imageUrlBuilder">
->): { width: number | undefined; height: number | undefined; srcset: string } {
+> & {
+  width: string | number | null | undefined;
+  height: string | number | null | undefined;
+}): ComponentProps {
   const determinedWidths = Array.isArray(widths)
     ? widths
     : generateWidths(widths, src);
 
-  const [width, height] = isSanityDimensionedImage(src)
-    ? [
-        src.asset.metadata.dimensions.width,
-        src.asset.metadata.dimensions.height,
-      ]
-    : [undefined, undefined];
+  const [w, h] = getImageDimensions(
+    src,
+    width != null ? Number(width) : undefined,
+    height != null ? Number(height) : undefined,
+  );
+
+  const builder = imageUrlBuilder.withOptions(options).image(src);
 
   const srcset = determinedWidths
-    .map(
-      (w: number) =>
-        `${imageUrlBuilder
-          .width(w)
-          .withOptions(options ?? {})
-          .url()} ${w}w`,
-    )
+    .map((w: number) => `${builder.width(w).url()} ${w}w`)
     .join(", ");
 
-  return { width, height, srcset };
+  return { width: w, height: h, srcset, src: builder.url() };
 }

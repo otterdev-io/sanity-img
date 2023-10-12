@@ -5,8 +5,7 @@
 import {
   type SanityImageProps,
   defaultSanityImageComponentDefaults,
-  generateWidths,
-  isSanityDimensionedImage,
+  componentProps,
 } from "@sanity-image-component/lib";
 
 import type { ImgAttributes } from "./types";
@@ -16,40 +15,37 @@ type Props = SanityImageProps & ImgAttributes;
 const defaults = (globalThis.sanityImageComponentDefaults ??=
   defaultSanityImageComponentDefaults);
 
-const { imageUrlBuilder, src, widths, sizes, options, ...restProps } =
-  Astro.props;
+const {
+  imageUrlBuilder,
+  src,
+  widths,
+  sizes,
+  options,
+  width,
+  height,
+  ...restProps
+} = Astro.props;
 
-const builder = (imageUrlBuilder ?? defaults.imageUrlBuilder)
-  ?.image(src)
-  .withOptions(options ?? defaults.options);
+const builder = imageUrlBuilder ?? defaults.imageUrlBuilder;
 
 if (!builder) {
   throw new Error("No image url builder specified, and no default set!");
 }
 
-const determinedWidths = Array.isArray(widths)
-  ? widths
-  : generateWidths(widths ?? defaults.autoWidths, src);
-
-const [width, height] = isSanityDimensionedImage(src)
-  ? [src.asset.metadata.dimensions.width, src.asset.metadata.dimensions.height]
-  : [undefined, undefined];
-
-const srcset = determinedWidths
-  .map(
-    (w: number) =>
-      `${builder
-        .width(w)
-        .withOptions(options ?? {})
-        .url()} ${w}w`,
-  )
-  .join(", ");
+const props = componentProps({
+  imageUrlBuilder: builder,
+  widths: widths ?? defaults.widths,
+  width,
+  height,
+  src,
+  options: options ?? defaults.options,
+});
 ---
 
 <img
-  src={builder.url()}
-  srcset={srcset}
-  width={width}
-  height={height}
+  src={props.src}
+  srcset={props.srcset}
+  width={props.width}
+  height={props.height}
   {...restProps}
 />

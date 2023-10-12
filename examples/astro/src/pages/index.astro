@@ -16,9 +16,9 @@ const data = await sanityClient.fetch(
 <Layout title="Astro example">
   <main>
     <h1>Astro component</h1>
-    <SanityImgAstro src={data.logo} alt="Image" />
+    <SanityImgAstro src={data.logo} alt="Image" sizes="200w" width={100} />
     <h2>Svelte component</h2>
-    <SanityImgSvelte src={data.logo} alt="Image" />
+    <SanityImgSvelte src={data.logo} alt="Image" sizes="200w" width={100} />
     <h2>Svelte in svelte</h2>
     <MySvelteComponent imageSrc={data.logo} />
   </main>

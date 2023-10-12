@@ -43,6 +43,11 @@
     "@sanity-image-component/lib": "^0.1.0",
     "astro": "> 2.0.0"
   },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
   "keywords": [
     "astro",
     "astro-component",
@@ -55,7 +60,7 @@
     "type": "git",
     "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/astro#readme",
   "author": "Otterdev",
   "maintainers": [
     {

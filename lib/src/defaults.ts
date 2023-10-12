@@ -5,7 +5,7 @@ import type { SanityImageComponentDefaults } from "./types.js";
  */
 export const defaultSanityImageComponentDefaults: SanityImageComponentDefaults =
   {
-    autoWidths: {
+    widths: {
       maxWidth: 3840,
       step: 320,
     },

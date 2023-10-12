@@ -27,6 +27,8 @@
     "typescript": "^5.2.2"
   },
   "keywords": [
+    "astro",
+    "svelte",
     "sanity",
     "image",
     "responsive"
@@ -35,7 +37,7 @@
     "type": "git",
     "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/lib#readme",
   "author": "Otterdev",
   "maintainers": [
     {

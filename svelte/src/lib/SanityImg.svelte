@@ -3,6 +3,8 @@
     defaultSanityImageComponentDefaults,
     componentProps,
     type SanityImageProps,
+    image,
+    type ComponentProps,
   } from "@sanity-image-component/lib";
 
   import type { HTMLImgAttributes } from "svelte/elements";
@@ -17,32 +19,38 @@
     defaults.imageUrlBuilder;
 
   export let src: SanityImageProps["src"];
-  export let widths: NonNullable<SanityImageProps["widths"]> =
-    defaults.autoWidths;
+  export let widths: NonNullable<SanityImageProps["widths"]> = defaults.widths;
   export let options: NonNullable<SanityImageProps["options"]> =
     defaults.options;
 
-  //Weird forcing it at the end, but magic svelte syntax prevents the undefined from disappearing naturally
-  $: builder = imageUrlBuilder?.image(src).withOptions(options)!;
+  let props: ComponentProps;
+  let imgProps: Omit<HTMLImgAttributes, "src" | "width" | "height">;
 
-  $: if (!builder) {
-    throw new Error("No image url builder specified, and no default set!");
+  $: {
+    if (!imageUrlBuilder) {
+      throw new Error("No image url builder specified, and no default set!");
+    }
+
+    const { width, height, ...rest } = $$restProps;
+    imgProps = rest;
+
+    props = componentProps({
+      imageUrlBuilder,
+      widths,
+      width,
+      height,
+      src,
+      options,
+    });
   }
-
-  $: props = componentProps({
-    imageUrlBuilder: builder,
-    widths,
-    src,
-    options,
-  });
 </script>
 
 <!-- alt tag will come from restprops -->
 <!-- svelte-ignore a11y-missing-attribute -->
 <img
   srcset={props.srcset}
-  src={builder.url()}
+  src={props.src}
   width={props.width}
   height={props.height}
-  {...$$restProps}
+  {...imgProps}
 />

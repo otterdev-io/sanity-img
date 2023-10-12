@@ -48,7 +48,26 @@
     "typescript": "^5.2.2",
     "vite": "^4.4.11"
   },
+  "keywords": [
+    "svelte",
+    "sanity",
+    "image",
+    "responsive"
+  ],
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
+  },
+  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/svelte#readme",
+  "author": "Otterdev",
+  "maintainers": [
+    {
+      "name": "Christopher Fraser",
+      "email": "chris@otterdev.io"
+    }
+  ],
+  "license": "ISC"
 }

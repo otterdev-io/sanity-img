@@ -10,7 +10,7 @@ import type {
  * Default properties for all components in the app
  */
 export interface SanityImageComponentDefaults {
-  autoWidths: AutoWidths;
+  widths: number[] | AutoWidths;
   imageUrlBuilder?: ImageUrlBuilder;
   options: Partial<ImageUrlBuilderOptionsWithAliases>;
 }
