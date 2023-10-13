@@ -9,7 +9,7 @@ import {
 } from "@otterstack/sanity-img-lib";
 
 import type { ImgAttributes } from "./types";
-type Props = SanityImageProps & ImgAttributes;
+type Props = SanityImageProps & Omit<ImgAttributes, "src">;
 
 //Max default allows for 1920px width @ 2x
 const defaults = (globalThis.sanityImgDefaults ??= defaultSanityImgDefaults);

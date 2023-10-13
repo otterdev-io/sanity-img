@@ -3,7 +3,6 @@
     defaultSanityImgDefaults,
     componentProps,
     type SanityImageProps,
-    image,
     type ComponentProps,
   } from "@otterstack/sanity-img-lib";
 
