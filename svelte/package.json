@@ -1,6 +1,6 @@
 {
   "name": "@otterstack/sanity-img-svelte",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
@@ -29,7 +29,7 @@
     "@sanity/image-url": "^1.0.2"
   },
   "peerDependencies": {
-    "@otterstack/sanity-img-lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "> 0.2.0",
     "svelte": "^4.0.0"
   },
   "devDependencies": {

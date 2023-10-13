@@ -1,6 +1,6 @@
 {
   "name": "@otterstack/sanity-img-astro",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An Astro component for rendering a responsive <img> element for an image fetched from Sanity",
   "type": "module",
   "module": "dist/index.js",
@@ -40,7 +40,7 @@
     "@sanity/astro": "> 2.0.0",
     "@sanity/client": "> 6.0.0",
     "@sanity/image-url": "> 1.0.0",
-    "@otterstack/sanity-img-lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "> 0.2.0",
     "astro": "> 2.0.0"
   },
   "files": [
