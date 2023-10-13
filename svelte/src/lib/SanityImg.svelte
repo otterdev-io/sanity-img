@@ -5,7 +5,7 @@
     type SanityImageProps,
     image,
     type ComponentProps,
-  } from "@sanity-image-component/lib";
+  } from "@otterstack/sanity-img-lib";
 
   import type { HTMLImgAttributes } from "svelte/elements";
 

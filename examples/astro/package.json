@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-component/example-astro",
+  "name": "@otterstack/example-astro",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^4.0.3",
-    "@sanity-image-component/astro": "workspace:*",
-    "@sanity-image-component/svelte": "workspace:*",
+    "@otterstack/sanity-img-astro": "workspace:*",
+    "@otterstack/sanity-img-svelte": "workspace:*",
     "@sanity/astro": "^2.1.1",
     "@sanity/client": "^6.4.12",
     "@sanity/image-url": "^1.0.2",

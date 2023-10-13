@@ -1,7 +1,7 @@
 export {
   image,
   setSanityImageComponentDefaults,
-} from "@sanity-image-component/lib";
+} from "@otterstack/sanity-img-lib";
 
 import SanityImg from "./SanityImg.svelte";
 export default SanityImg;

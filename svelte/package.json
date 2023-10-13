@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-component/svelte",
+  "name": "@otterstack/sanity-img-svelte",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite dev",
@@ -25,11 +25,11 @@
     "!dist/**/*.spec.*"
   ],
   "dependencies": {
-    "@sanity-image-component/lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "^0.1.0",
     "@sanity/image-url": "^1.0.2"
   },
   "peerDependencies": {
-    "@sanity-image-component/lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "^0.1.0",
     "svelte": "^4.0.0"
   },
   "devDependencies": {
@@ -59,9 +59,9 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
+    "url": "git+https://github.com/otterdev-io/sanity-img.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/svelte#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-img/tree/main/svelte#readme",
   "author": "Otterdev",
   "maintainers": [
     {

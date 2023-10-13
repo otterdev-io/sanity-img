@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-component/astro",
+  "name": "@otterstack/sanity-img-astro",
   "version": "0.1.0",
   "description": "An Astro component for rendering a responsive <img> element for an image fetched from Sanity",
   "type": "module",
@@ -22,7 +22,7 @@
     "check": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@sanity-image-component/lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "^0.1.0",
     "@sanity/image-url": "^1.0.2"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@sanity/astro": "> 2.0.0",
     "@sanity/client": "> 6.0.0",
     "@sanity/image-url": "> 1.0.0",
-    "@sanity-image-component/lib": "^0.1.0",
+    "@otterstack/sanity-img-lib": "^0.1.0",
     "astro": "> 2.0.0"
   },
   "files": [
@@ -58,9 +58,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
+    "url": "git+https://github.com/otterdev-io/otterstack.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/astro#readme",
+  "homepage": "https://github.com/otterdev-io/otterstack/tree/main/astro#readme",
   "author": "Otterdev",
   "maintainers": [
     {

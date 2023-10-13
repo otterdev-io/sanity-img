@@ -1,5 +1,5 @@
 {
-  "name": "@sanity-image-component/lib",
+  "name": "@otterstack/sanity-img-lib",
   "version": "0.1.0",
   "description": "Common code for sanity image tags",
   "type": "module",
@@ -35,9 +35,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/otterdev-io/sanity-image-component.git"
+    "url": "git+https://github.com/otterdev-io/sanity-img.git"
   },
-  "homepage": "https://github.com/otterdev-io/sanity-image-component/tree/main/lib#readme",
+  "homepage": "https://github.com/otterdev-io/sanity-img/tree/main/lib#readme",
   "author": "Otterdev",
   "maintainers": [
     {

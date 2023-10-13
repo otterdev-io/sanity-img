@@ -1,4 +1,4 @@
-# @sanity-image-component/svelte
+# @otterstack/sanity-img-svelte
 
 A svelte framework components for rendering responsive `<img>` elements for images fetched from [Sanity](https://www.sanity.io). It will generate the elements with a srcset optimised for a range of resolutions and formats, using sanity's image API to serve the optimised images. Then you provide the `sizes` attribute, to ensure the browser delivers the ideal source. Refer to [Responsive images - MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) for information on providing responsive images.
 
@@ -6,7 +6,7 @@ Then usage can be as simple as:
 
 ```svelte
 <script>
-  import SanityImg from "@sanity-image-component/svelte"
+  import SanityImg from "@otterstack/sanity-img-svelte"
 </script>
 ---
    <SanityImg
@@ -18,17 +18,17 @@ Then usage can be as simple as:
 # Setup 
 
 # Settings defaults
-You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@sanity-image-component` packages: 
+You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts
 ---
-import { setSanityImageComponentDefaults } from "@sanity-image-component/svelte";
+import { setSanityImageComponentDefaults } from "@otterstack/sanity-img-svelte";
 
 setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
 ---
 ``` 
 ## In astro
-If using the svelte component in astro, you likely will want to set up the integration in `@sanity-image-component/astro`. This will set a default image builder and other options, making using the component easier. Refer to the README in that package for instructions.
+If using the svelte component in astro, you likely will want to set up the integration in `@otterstack/sanity-img-astro`. This will set a default image builder and other options, making using the component easier. Refer to the README in that package for instructions.
 
 
 # Usage
@@ -38,7 +38,7 @@ The key properties to provide for responsive images are:
   
 ```svelte
 <script>
-import SanityImg from "@sanity-image-component/svelte"
+import SanityImg from "@otterstack/sanity-img-svelte"
 </script>
 
    <SanityImg
@@ -76,7 +76,7 @@ const query = groq`*[_id == 'homePage'][0] {
 However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function:
 
 ```ts
-import { image } from '@sanity-image-component/svelte'
+import { image } from '@otterstack/sanity-img-svelte'
 
 const query = groq`*[_id == 'homePage'][0] {
   ...etc,

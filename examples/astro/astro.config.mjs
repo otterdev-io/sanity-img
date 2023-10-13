@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import sanityIntegration from "@sanity/astro";
 import svelte from "@astrojs/svelte";
-import { sanityImageComponentIntegration } from "@sanity-image-component/astro/integration";
+import { sanityImageComponentIntegration } from "@otterstack/sanity-img-astro/integration";
 // https://astro.build/config
 
 export default defineConfig({

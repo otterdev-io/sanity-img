@@ -1,4 +1,4 @@
-import type { SanityImageComponentDefaults } from "@sanity-image-component/lib";
+import type { SanityImageComponentDefaults } from "@otterstack/sanity-img-lib";
 
 declare global {
   var sanityImageComponentDefaults: SanityImageComponentDefaults;

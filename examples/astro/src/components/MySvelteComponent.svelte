@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SanityImg from "@sanity-image-component/svelte";
+  import SanityImg from "@otterstack/sanity-img-svelte";
   import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
   export let imageSrc: SanityImageSource;
 </script>

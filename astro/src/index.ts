@@ -1,7 +1,7 @@
 export {
   image,
   setSanityImageComponentDefaults,
-} from "@sanity-image-component/lib";
+} from "@otterstack/sanity-img-lib";
 
 //@ts-expect-error weird about jsx
 import SanityImg from "./SanityImg.astro";

@@ -1,4 +1,4 @@
-# @sanity-image-component/astro
+# @otterstack/sanity-img-astro
 
 Successor to astro-sanity-picture.
 
@@ -8,7 +8,7 @@ Then usage can be as simple as:
 
 ```astro
 ---
-import SanityImg from "@sanity-image-component/astro"
+import SanityImg from "@otterstack/sanity-img-astro"
 ---
    <SanityImg
     src={myImage}
@@ -21,7 +21,7 @@ Using the astro integration is optional. If used though, it will link it to the 
 
 First import it:
 ```ts
-import { sanityImageComponent } from "@sanity-image-component/astro/integration";
+import { sanityImageComponent } from "@otterstack/sanity-img-astro/integration";
 ```
 
 and add it to `astro.config.mjs` after the sanity integration:
@@ -30,7 +30,7 @@ and add it to `astro.config.mjs` after the sanity integration:
 import { defineConfig } from "astro/config";
 import sanityIntegration from "@sanity/astro";
 import svelte from "@astrojs/svelte";
-import { sanityImageComponent } from "@sanity-image-component/astro/integration";
+import { sanityImageComponent } from "@otterstack/sanity-img-astro/integration";
 // https://astro.build/config
 
 export default defineConfig({
@@ -54,7 +54,7 @@ The key properties to provide for responsive images are:
   
 ```astro
 ---
-import SanityImg from "@sanity-image-component/astro"
+import SanityImg from "@otterstack/sanity-img-astro"
 ---
    <SanityImg
     src={myImage}
@@ -91,7 +91,7 @@ const query = groq`*[_id == 'homePage'][0] {
 However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function.
 
 ```ts
-import { image } from '@sanity-image-component/astro'
+import { image } from '@otterstack/sanity-img-astro'
 
 const query = groq`*[_id == 'homePage'][0] {
   ...etc,
@@ -101,11 +101,11 @@ const query = groq`*[_id == 'homePage'][0] {
 ```
 
 # Setting defaults for all components
-As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@sanity-image-component` packages: 
+As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts
 ---
-import { setSanityImageComponentDefaults } from "@sanity-image-component/astro";
+import { setSanityImageComponentDefaults } from "@otterstack/sanity-img-astro";
 
 setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
 ---
