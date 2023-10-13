@@ -9,7 +9,7 @@ import type {
 /**
  * Default properties for all components in the app
  */
-export interface SanityImageComponentDefaults {
+export interface SanityImgDefaults {
   widths: number[] | AutoWidths;
   imageUrlBuilder?: ImageUrlBuilder;
   options: Partial<ImageUrlBuilderOptionsWithAliases>;
@@ -35,7 +35,7 @@ export type SanityDimensionedImage = SanityImageWithAssetStub & {
 };
 
 declare global {
-  var sanityImageComponentDefaults: SanityImageComponentDefaults;
+  var sanityImgDefaults: SanityImgDefaults;
 }
 
 /**

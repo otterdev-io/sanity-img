@@ -18,13 +18,13 @@ Then usage can be as simple as:
 # Setup 
 
 # Settings defaults
-You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
+You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImgDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts
 ---
-import { setSanityImageComponentDefaults } from "@otterstack/sanity-img-svelte";
+import { setSanityImgDefaults } from "@otterstack/sanity-img-svelte";
 
-setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
+setSanityImgDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
 ---
 ``` 
 ## In astro

@@ -1,7 +1,7 @@
 /// <reference types="@sanity/astro/module" />
 
-import type { SanityImageComponentDefaults } from "@otterstack/sanity-img-lib";
+import type { SanityImgDefaults } from "@otterstack/sanity-img-lib";
 
 declare global {
-  var sanityImageComponentDefaults: SanityImageComponentDefaults;
+  var sanityImgDefaults: SanityImgDefaults;
 }

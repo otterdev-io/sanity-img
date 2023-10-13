@@ -4,7 +4,7 @@
 
 import {
   type SanityImageProps,
-  defaultSanityImageComponentDefaults,
+  defaultSanityImgDefaults,
   componentProps,
 } from "@otterstack/sanity-img-lib";
 
@@ -12,8 +12,7 @@ import type { ImgAttributes } from "./types";
 type Props = SanityImageProps & ImgAttributes;
 
 //Max default allows for 1920px width @ 2x
-const defaults = (globalThis.sanityImageComponentDefaults ??=
-  defaultSanityImageComponentDefaults);
+const defaults = (globalThis.sanityImgDefaults ??= defaultSanityImgDefaults);
 
 const {
   imageUrlBuilder,

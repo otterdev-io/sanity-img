@@ -1,6 +1,6 @@
 <script lang="ts">
   import {
-    defaultSanityImageComponentDefaults,
+    defaultSanityImgDefaults,
     componentProps,
     type SanityImageProps,
     image,
@@ -12,8 +12,7 @@
   type $$Props = SanityImageProps & Omit<HTMLImgAttributes, "src">;
 
   //Max default allows for 1920px width @ 2x
-  const defaults = (globalThis.sanityImageComponentDefaults ??=
-    defaultSanityImageComponentDefaults);
+  const defaults = (globalThis.sanityImgDefaults ??= defaultSanityImgDefaults);
 
   export let imageUrlBuilder: SanityImageProps["imageUrlBuilder"] =
     defaults.imageUrlBuilder;

@@ -1,13 +1,13 @@
 import type { AstroIntegration } from "astro";
 import {
-  defaultSanityImageComponentDefaults,
-  type SanityImageComponentDefaults,
+  defaultSanityImgDefaults,
+  type SanityImgDefaults,
 } from "@otterstack/sanity-img-lib";
 
-export function sanityImageComponentIntegration(
-  defaults?: SanityImageComponentDefaults,
+export function sanityImgIntegration(
+  defaults?: SanityImgDefaults,
 ): AstroIntegration {
-  const resolvedDefaults = defaults ?? defaultSanityImageComponentDefaults;
+  const resolvedDefaults = defaults ?? defaultSanityImgDefaults;
   return {
     name: "@otterstack/sanity-img-astro/integration",
     hooks: {
@@ -17,10 +17,10 @@ export function sanityImageComponentIntegration(
           `
           import $_sic_urlBuilder from "@sanity/image-url";
           import { sanityClient as $_sic_sanityClient } from "sanity:client";
-          import { setSanityImageComponentDefaults as $_sic_setSanityImageComponentDefaults } from "@otterstack/sanity-img-astro";
+          import { setSanityImgDefaults as $_sic_setSanityImgDefaults } from "@otterstack/sanity-img-astro";
           {
             const imageUrlBuilder = $_sic_urlBuilder($_sic_sanityClient);
-            $_sic_setSanityImageComponentDefaults({...${JSON.stringify(
+            $_sic_setSanityImgDefaults({...${JSON.stringify(
               resolvedDefaults,
             )}, imageUrlBuilder });
           }
