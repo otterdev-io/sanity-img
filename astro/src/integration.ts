@@ -4,7 +4,7 @@ import {
   type SanityImgDefaults,
 } from "@otterstack/sanity-img-lib";
 
-export function sanityImgIntegration(
+export default function sanityImg(
   defaults?: SanityImgDefaults,
 ): AstroIntegration {
   const resolvedDefaults = defaults ?? defaultSanityImgDefaults;

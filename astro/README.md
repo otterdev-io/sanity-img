@@ -21,28 +21,28 @@ Using the astro integration is optional. If used though, it will link it to the 
 
 First import it:
 ```ts
-import { sanityImg } from "@otterstack/sanity-img-astro/integration";
+import sanityImg from "@otterstack/sanity-img-astro/integration";
 ```
 
 and add it to `astro.config.mjs` after the sanity integration:
 
 ```ts
 import { defineConfig } from "astro/config";
-import sanityIntegration from "@sanity/astro";
+import sanity from "@sanity/astro";
 import svelte from "@astrojs/svelte";
-import { sanityImg } from "@otterstack/sanity-img-astro/integration";
+import sanityImg from "@otterstack/sanity-img-astro/integration";
 // https://astro.build/config
 
 export default defineConfig({
   integrations: [
     svelte(),
-    sanityIntegration({
+    sanity({
       //Otterdev site project
       projectId: "vfvqs8md",
       dataset: "production",
       useCdn: true,
     }),
-    sanityImg({auto: 'format'}),
+    sanity({auto: 'format'}),
   ],
 });
 ``` 
@@ -101,12 +101,12 @@ const query = groq`*[_id == 'homePage'][0] {
 ```
 
 # Setting defaults for all components
-As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImgDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
+As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts
 ---
-import { setSanityImgDefaults } from "@otterstack/sanity-img-astro";
+import { setSanityImageComponentDefaults } from "@otterstack/sanity-img-astro";
 
-setSanityImgDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
+setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
 ---
 ```
