@@ -28,8 +28,7 @@ setSanityImgDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "form
 ---
 ``` 
 ## In astro
-If using the svelte component in astro, you likely will want to set up the integration in `@otterstack/sanity-img-astro`. This will set a default image builder and other options, making using the component easier. Refer to the README in that package for instructions.
-
+If using the svelte component in astro, you likely will want to set up the integration in `@otterstack/sanity-img-astro`. This will set a default image builder and other options, making using the component simpler. Refer to the README in that package for instructions.
 
 # Usage
 The key properties to provide for responsive images are:
@@ -73,7 +72,7 @@ const query = groq`*[_id == 'homePage'][0] {
   }`
 ```
 
-However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function:
+However the tag is able to optimise itself more, such as setting width and height attributes to lower LCP, when the image metadata is fetched. To assist with this, you can use the `image` function:
 
 ```ts
 import { image } from '@otterstack/sanity-img-svelte'

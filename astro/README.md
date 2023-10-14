@@ -28,21 +28,19 @@ and add it to `astro.config.mjs` after the sanity integration:
 
 ```ts
 import { defineConfig } from "astro/config";
-import sanity from "@sanity/astro";
 import svelte from "@astrojs/svelte";
+import sanity from "@sanity/astro";
 import sanityImg from "@otterstack/sanity-img-astro/integration";
-// https://astro.build/config
 
 export default defineConfig({
   integrations: [
     svelte(),
     sanity({
-      //Otterdev site project
-      projectId: "vfvqs8md",
-      dataset: "production",
+      projectId: "my-project-id",
+      dataset: "my-dataset",
       useCdn: true,
     }),
-    sanity({auto: 'format'}),
+    sanityImg({auto: 'format'}),
   ],
 });
 ``` 
@@ -88,7 +86,7 @@ const query = groq`*[_id == 'homePage'][0] {
   }`
 ```
 
-However the tag is able to optimise itself more when the image metadata is fetched. To assist with this, you can use the `image` function.
+However the tag is able to optimise itself more, such as setting width and height attributes to reduce LCP, when the image metadata is fetched. To assist with this, you can use the `image` function.
 
 ```ts
 import { image } from '@otterstack/sanity-img-astro'
