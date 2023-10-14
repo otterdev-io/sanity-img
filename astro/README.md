@@ -40,7 +40,7 @@ export default defineConfig({
       dataset: "my-dataset",
       useCdn: true,
     }),
-    sanityImg({auto: 'format'}),
+    sanityImg({options: {auto: 'format'}}),
   ],
 });
 ``` 
