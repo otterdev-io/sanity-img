@@ -17,7 +17,7 @@ Then usage can be as simple as:
 
 # Setup 
 
-# Settings defaults
+# Setting defaults for all components
 You will likely want to provide a default configuration for all your components, at least to provide an image url builder from your sanity client. For this, the function `setSanityImgDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts

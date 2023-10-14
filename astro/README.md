@@ -99,12 +99,12 @@ const query = groq`*[_id == 'homePage'][0] {
 ```
 
 # Setting defaults for all components
-As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImageComponentDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
+As noted before, defaults can be provided with the astro integration, otherwise the function `setSanityImgDefaults` can be used. Defaults will be set across all components across all `@otterstack` packages: 
 
 ```ts
 ---
-import { setSanityImageComponentDefaults } from "@otterstack/sanity-img-astro";
+import { setSanityImgDefaults } from "@otterstack/sanity-img-astro";
 
-setSanityImageComponentDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
+setSanityImgDefaults({ imageUrlBuilder: myImageUrlBuilder, options: {auto: "format" } })
 ---
 ```
