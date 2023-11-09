@@ -20,7 +20,7 @@ const data = await sanityClient.fetch(
     <h2>Svelte component</h2>
     <SanityImgSvelte src={data.logo} alt="Image" sizes="200w" width={100} />
     <h2>Svelte in svelte</h2>
-    <MySvelteComponent imageSrc={data.logo} />
+    <MySvelteComponent imageSrc={data.logo} client:load />
   </main>
 </Layout>
 
