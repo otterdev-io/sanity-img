@@ -2,6 +2,10 @@ import { defineConfig } from "astro/config";
 import sanity from "@sanity/astro";
 import svelte from "@astrojs/svelte";
 import sanityImg from "@otterstack/sanity-img-astro/integration";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
 // https://astro.build/config
 
 export default defineConfig({
@@ -15,4 +19,4 @@ export default defineConfig({
     }),
     sanityImg({ options: { auto: "format" } }),
   ],
-});
+});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
