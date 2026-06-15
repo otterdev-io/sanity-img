@@ -19,4 +19,4 @@ export default defineConfig({
     }),
     sanityImg({ options: { auto: "format" } }),
   ],
-});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+});
